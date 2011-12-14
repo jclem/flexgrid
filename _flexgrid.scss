@@ -1,26 +1,32 @@
 $container-width: 1020;
 $num-columns:     9;
 $column-width:    76;
-$gutter-width:    ($container-width - $num-columns * $column-width) / ($num-columns - 1);
+$gutter-width:    ($container-width - $num-columns * $column-width) / $num_columns;
 
 $container-px-width:  $container-width * 1px;
-$gutter-px-width:     $gutter-width * 1px;
-$gutter-pct-width:    ($gutter-width / $container-width) * 100%;
 $column-px-width:     $column-width * 1px;
 $column-pct-width:    ($column-width / $container-width) * 100%;
+$gutter-px-width:     $gutter-width * 1px;
+$gutter-pct-width:    ($gutter-width / $container-width) * 100%;
 
 @mixin container {
   width: 90%;
   max-width: $container-px-width;
   margin: 0 auto;
-  overflow: hidden;
+
+  /* Keep the container centered. */
+  position: relative;
+  left: $gutter-pct-width / 2;
 }
 
 @mixin cols($cols:$num-columns) {
-  width: ($cols * $column-width + ($cols - 1) * $gutter-width) / $container-width * 100%;
+  width: $column-pct-width * $cols + $gutter-pct-width * ($cols - 1);
   margin-right: $gutter-pct-width;
   float: left;
-}
 
-@mixin last { margin-right: 0; }
+  @media screen and (max-width: 400px) {
+    width: 100% - $gutter-pct-width;
+    margin-bottom: 1em;
+  }
+}
 

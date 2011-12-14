@@ -1,0 +1,3 @@
+config.ru
+.sass-cache
+.DS_Store
