@@ -11,7 +11,7 @@ $gutter-pct-width:    ($gutter-width / $container-width) * 100%;
 
 @mixin container {
   width: 90%;
-  max-width: $container-px-width;
+  max-width: $container-px-width + $gutter-px-width;
   margin: 0 auto;
 
   /* Keep the container centered. */
